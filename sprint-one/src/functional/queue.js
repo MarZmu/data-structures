@@ -9,15 +9,15 @@ var Queue = function() {
   someInstance.enqueue = function(value) {
     //uses keys function to identify next numeric key to add value at
     var currentKeys = Object.keys(storage);
-    var key = Number(currentKeys[currentKeys.length - 1]) + 1;
+    var key = Number(currentKeys[currentKeys.length - 1]) + 1 || 0;
     storage[key] = value;
 
     //* ADDS TIME COMPLEXITY BUT KEEPS KEYS 0-INDEXED */
-    var newStorage = {};
-    for (var i = 0; i < this.size(); i++) {
-      newStorage[i] = Object.values(storage)[i];
-    }
-    storage = newStorage;
+    // var newStorage = {};
+    // for (var i = 0; i < this.size(); i++) {
+    //   newStorage[i] = Object.values(storage)[i];
+    // }
+    // storage = newStorage;
   };
 
   someInstance.dequeue = function() {
