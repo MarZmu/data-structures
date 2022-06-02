@@ -13,25 +13,28 @@ var Queue = function() {
     storage[key] = value;
 
     //* ADDS TIME COMPLEXITY BUT KEEPS KEYS 0-INDEXED */
-    // var newStorage = {};
-    // for (var i = 0; i < this.size(); i++) {
-    //   newStorage[i] = Object.values(storage)[i];
-    // }
-    // storage = newStorage;
+    if (!storage[0]) {
+      var newStorage = {};
+      for (var i = 0; i < someInstance.size(); i++) {
+        newStorage[i] = Object.values(storage)[i];
+      }
+      storage = newStorage;
+    }
   };
 
   someInstance.dequeue = function() {
     /* if used 0-index method */
-    // var retVal = storage[0];
-    // delete storage[0];
-    // return retVal;
+    var retVal = storage[0];
+    delete storage[0];
+    return retVal;
 
-    //stores the last value
-    var first = Object.keys(storage)[0];
-    var firstProp = storage[first];
-    //deletes property, the returns stored value
-    delete storage[first];
-    return firstProp;
+    /*if not using 0-indexed */
+    // //stores the last value
+    // var first = Object.keys(storage)[0];
+    // var firstProp = storage[first];
+    // //deletes property, the returns stored value
+    // delete storage[first];
+    // return firstProp;
   };
 
   someInstance.size = function() {
