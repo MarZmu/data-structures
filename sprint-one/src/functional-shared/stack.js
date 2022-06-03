@@ -4,7 +4,7 @@ var Stack = function() {
   var newStack = {
     storage: {}
   };
-
+  //by extending the methods to newStack, newStack is now accessed by th1s when it invokes the methods
   _.extend(newStack, stackMethods);
 
   return newStack;
