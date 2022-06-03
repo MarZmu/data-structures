@@ -1,9 +1,8 @@
 var Stack = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
-  var newStack = {
-    storage: {}
-  };
+  var newStack = {};
+  newStack.storage = {};
   //by extending the methods to newStack, newStack is now accessed by th1s when it invokes the methods
   _.extend(newStack, stackMethods);
 

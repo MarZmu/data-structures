@@ -1,6 +1,7 @@
 var Queue = function() {
   //creates an object which will be given all the shared methods.
-  var newQueue = {storage: {}};
+  var newQueue = {};
+  newQueue.storage = {};
   _.extend(newQueue, queueMethods);
 
   return newQueue;
@@ -13,22 +14,21 @@ queueMethods = {
 
 queueMethods.enqueue = function(value) {
   //newQueue will be calling these methods and is specified by 'this' keyword
-  var keys = Object.keys(this.storage);
-  var nextKey = Number(keys[keys.length - 1]) + 1 || 0;
+  var nextKey = Object.keys(this.storage).length;
   this.storage[nextKey] = value;
-  if (!this.storage[0]) {
-    var newStorage = {};
-    for (var i = 0; i < this.size(); i++) {
-      newStorage[i] = Object.values(this.storage)[i];
-      console.log(newStorage, this.storage);
-    }
-    this.storage = newStorage;
-  }
 };
 
 queueMethods.dequeue = function() {
   var retVal = this.storage[0];
   delete this.storage[0];
+  //fix the offset in numeric keys
+  if (!this.storage[0] && Object.keys(this.storage).length) {
+    var newStorage = {};
+    for (var i = 0; i < this.size(); i++) {
+      newStorage[i] = Object.values(this.storage)[i];
+    }
+    this.storage = newStorage;
+  }
   return retVal;
 };
 
